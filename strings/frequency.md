@@ -5,7 +5,9 @@
 ```c
 #include <stdio.h>
 #include <ctype.h>
-void disp(const char *str){
+int main(){
+  char str[100];
+  scanf("%[^\n]",str);
   int freq[26] = {0};
   for(int i=0;str[i]!='\0';i++){
     char ch = tolower(str[i]);
@@ -19,11 +21,11 @@ void disp(const char *str){
     }
   }
 }
-int main(){
-  char str[100];
-  scanf("%[^\n]", str);
-  disp(str);
-}
+
 ```
 ---
-2. 
+2. To find the  Anagram in strings.
+
+```c
+
+```
