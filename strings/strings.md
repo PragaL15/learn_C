@@ -232,6 +232,28 @@ int main()
 }
 ```
 ---
+9. Printing the alternate letters in a string 
+
+```c
+#include<stdio.h>
+#include<string.h>
+#include<ctype.h>
+int main(){
+  char str[100];
+  scanf("%[^\n]",str);
+  char store[100];
+  int len = strlen(str);
+  int j=0;
+  for(int i=0;i<=len;i+=2){
+    if(str[i]!=' ')
+    store[j++] = str[i];
+  }
+  store[j] = '\0';
+  printf("%s",store);
+}
+
+```
+---
 10. Printing the alternate letters in a string in reverse order.
 
 ```c
@@ -1135,4 +1157,70 @@ int main(){
 }
 ```
 ---
-44. 
+44. 2nd maximum largest word in the string 
+
+```c
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+int main(){
+  char str[100];
+  scanf("%[^\n]",str);
+  char* token;
+  char* tokens[100];
+  int len = strlen(str);
+  int i=0;
+  token = strtok(str," ");
+  while( token != NULL){
+    tokens[i++] = token;
+    token = strtok(NULL," ");
+  }
+  int max = strlen(tokens[0]);
+  char* max_word = NULL;
+  char* sec_max = NULL;
+  int sec = strlen(tokens[0]);
+  
+  for(int j=0;j<i;j++){
+    int count = strlen(tokens[j]);
+    if(count>max){
+      sec_max=max_word;
+      sec=max;
+      max_word=tokens[j];
+      max=count;
+      if(max>count && max>sec){
+        sec_max=tokens[j];
+      }
+    }
+  }
+  printf("%s",sec_max); 
+}
+```
+---
+45. A B C E F G F T N is input and 
+    output is 
+```
+   A E F 
+   B F T 
+   C G N 
+  ```
+
+```c
+#include<stdio.h>
+int main(){
+  char str[3][3];
+  for(int i=0;i<3;i++){
+    for(int j=0;j<3;j++){
+      scanf(" %c",&str[i][j]);
+    }
+  }
+  for(int col=0;col<3;col++){
+    for(int row=0;row<3;row++){
+      printf("%c ",str[row][col]);
+    }
+    printf("\n");
+  }
+}
+```
+---
+46. 
