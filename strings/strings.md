@@ -188,63 +188,47 @@ for(int i=0;i<256;i++){
 }
 ```
 ---
-8. The smallest word in the whole string 
+8. The smallest word and largest word in the whole string 
 
 ```c
 #include <stdio.h>
-#include <string.h>
-int main(){
-  char str[100];
-  scanf("%[^\n]",str);
-  int len = strlen(str);
-  char* token;
-  char* tokens[100];
-  int i = 0;
-  int count = 0;
-  token = strtok(str," ");
-  while(token != NULL){
-    tokens[i++] = token;
-    token = strtok(NULL," ");
-  }
-  char* min_word = tokens[0];
-  int min = strlen(tokens[0]);
-  
-  for(int j=0;j<i;j++){
-    if(strlen(tokens[j]) < min_word){
-      min_word= tokens[j];
-    }
-  }
-  printf("%s",min_word);
-}
-```
----
-9. To count the largest word in a string.
+#include<string.h>
+#include <ctype.h>
 
-```c
-#include <stdio.h>
-#include <string.h>
-int main(){
-  char str[100];
-  scanf("%[^\n]",str);
-  int len = strlen(str);
-  char* token;
-  char* tokens[100];
-  int i = 0;
-  int count = 0;
-  token = strtok(str," ");
-  while(token != NULL){
-    tokens[i++] = token;
-    token = strtok(NULL," ");
-  }
-  char* max_word = tokens[0];
-  int max = strlen(tokens[0]);
-  
-  for(int j=0;j<i;j++){
-    if(strlen(tokens[j]) > max_word){
-      max_word= tokens[j];
-    }
-  }
-  printf("%s",max_word);
+int main()
+{
+   char str[100];
+   scanf("%[^\n]",str);
+   int len = strlen(str);
+   getchar();
+   int count =0;
+   char* token;
+   char* tokens[100];
+   token= strtok(str," ");
+   int i=0;
+   while(token != NULL){
+     tokens[i++]=token;
+     token=strtok(NULL, " ");
+   }
+     int max=strlen(tokens[0]);
+     int min=strlen(tokens[0]);
+     char* max_word=tokens[0];
+     char* min_word=tokens[0];
+   for(int j=0;j<i;j++){
+     int count = strlen(tokens[j]);
+     if(count>max)
+     {
+       max=count;
+       max_word=tokens[j];
+     }
+     if(count<min){
+       min=count;
+       min_word = tokens[j];
+     }
+   }
+   printf("%s\n",min_word);
+   printf("%s",max_word);
+   
 }
 ```
 ---
