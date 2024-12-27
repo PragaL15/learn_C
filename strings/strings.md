@@ -673,4 +673,423 @@ int main()
     }
    ```
 ---
-28. 
+28. Delete the first occurance of a letter in the string
+
+```c 
+#include <stdio.h>
+#include<string.h>
+
+int main()
+{
+   char str[100];
+   scanf("%[^\n]",str);
+   getchar();
+   char letter;
+   scanf("%c",&letter);
+   int found = 0;
+   int freq[256]={0};
+   int len = strlen(str);
+   for(int i=0;i<len;i++){
+   if(str[i]==letter && !found){
+     found=1;
+   continue;
+   }
+   printf("%c",str[i]);
+   }
+   }
+   ```
+   ---
+   29. Delete the last occurance of the letter in the string.
+
+   ```c 
+    #include <stdio.h>
+    #include<string.h>
+    int main()
+    {
+      char str[100];
+      scanf("%[^\n]",str);
+      getchar();
+      char letter;
+      scanf("%c",&letter);
+      int lastIndex = 0;
+      int freq[256]={0};
+      int len = strlen(str);
+      for(int i=0;i<len;i++){
+      if(str[i]==letter){
+        lastIndex=i;
+      }
+      }
+      for(int i=0;i<len;i++){
+      if(str[i]==letter){
+      if(lastIndex==i)
+      continue;
+      }
+      printf("%c",str[i]);
+      } 
+    }
+```
+---
+
+30. Delete all the occurance of the letter from the string 
+
+```c 
+    #include <stdio.h>
+    #include<string.h>
+
+    int main()
+    {
+      char str[100];
+      scanf("%[^\n]",str);
+      getchar();
+      char letter;
+      scanf("%c",&letter);
+      int freq[256]={0};
+      int len = strlen(str);
+      for(int i=0;i<len;i++){
+      if(str[i]==letter){
+      continue;
+      }
+      printf("%c",str[i]);
+      }
+    }
+```
+---
+31.  Replace the first occurance of the letter with a wished letter
+
+```c 
+#include <stdio.h>
+#include<string.h>
+
+int main()
+{
+   char str[100];
+   scanf("%[^\n]",str);
+   getchar();
+   char letter;
+   char wished = 'p';
+   int first=0;
+   scanf("%c",&letter);
+   int freq[256]={0};
+   int len = strlen(str);
+   for(int i=0;i<len;i++){
+   if(str[i]==letter && !first){
+   first=1;
+   str[i]=wished;
+   }
+   printf("%c",str[i]);
+   }
+   
+}
+```
+---
+32. Replace the last occurance of the letter with the wished letter
+
+```c 
+#include <stdio.h>
+#include<string.h>
+
+int main()
+{
+   char str[100];
+   scanf("%[^\n]",str);
+   getchar();
+   char letter;
+   char wished = 'p';
+   int last=0;
+   scanf("%c",&letter);
+   int freq[256]={0};
+   int len = strlen(str);
+   for(int i=0;i<len;i++){
+   if(str[i]==letter){
+   last=i;
+   }
+   }
+   for(int i=0;i<len;i++){
+   if(str[i]==letter){
+   if(last == i)
+   str[i]=wished;
+   }
+   printf("%c",str[i]);
+   }  
+}
+```
+---
+33. Replace all the occurance with the wished letter in a string 
+
+```c
+#include <stdio.h>
+#include<string.h>
+
+int main()
+{
+   char str[100];
+   scanf("%[^\n]",str);
+   getchar();
+   char letter;
+   char wished = 'p';
+   scanf("%c",&letter);
+   int freq[256]={0};
+   int len = strlen(str);
+   for(int i=0;i<len;i++){
+   if(str[i]==letter){
+
+   str[i]=wished;
+   }
+   printf("%c",str[i]);
+   }
+}
+```
+---
+34. Find the occurrence of the alphabets, numbers and special characters.
+
+```c 
+#include <stdio.h>
+#include<string.h>
+#include <ctype.h>
+
+int main()
+{
+   char str[100];
+   scanf("%[^\n]",str);
+   getchar();
+   char letter;
+   int cha[100];
+   int num[100];
+   int sym[100];
+   int c=0;
+   int n=0;
+   int s=0;
+   scanf("%c",&letter);
+   int freq[256]={0};
+   int len = strlen(str);
+   for(int i=0;i<len;i++){
+   if(isalpha(str[i])){
+    cha[c++]=i;
+   }
+   if(isdigit(str[i])){
+    num[n++]=i;
+   }
+   if(!isalpha(str[i]) && !isdigit(str[i]) && (str[i]!=' ')){
+    sym[s++]=i;
+   }
+   }
+   for(int i=0;i<c;i++){
+     printf("\n%d is char",cha[i]);
+   }
+   printf("\n");
+   for(int i=0;i<n;i++){
+     printf("\n%d is digit",num[i]);
+   }
+    printf("\n");
+   for(int i=0;i<s;i++){
+    printf("\n%d is sym",sym[i]);
+    
+   }
+}
+```
+---
+35. Find the vowels and consonents from the given string.
+
+```c
+#include <stdio.h>
+#include<string.h>
+#include <ctype.h>
+
+int main()
+{
+   char str[100];
+   scanf("%[^\n]",str);
+   getchar();
+   int consonants[100];
+   int vowels[100];
+   int con=0;
+   int vow=0;
+   int len = strlen(str);
+   for(int i=0;i<len;i++){
+   if(isalpha(str[i])){
+     char low=tolower(str[i]);
+   if(low=='a' || low=='e' || low=='i' || low=='o' || low=='u' ){
+     vowels[vow++]=i;
+   }
+   else
+    consonants[con++]=i;
+   }
+   }
+   for(int i=0;i<con;i++){
+     printf("\n%d is consonants",consonants[i]);
+   }
+   printf("\n");
+   for(int i=0;i<vow;i++){
+     printf("\n%d is vowels",vowels[i]);
+   }
+  printf("\n%d\n%d",vow,con);
+}
+```
+---
+36. Removal of  all occurrences of a word in a string.
+
+```c 
+#include <stdio.h>
+#include<string.h>
+#include <ctype.h>
+
+int main()
+{
+   char str[100];
+   scanf("%[^\n]",str);
+   getchar();
+   char str2[100];
+   scanf("%[^\n]",str2);
+   char* token;
+   char* tokens[100];
+   int len = strlen(str);
+   token = strtok(str," ");
+   int i=0;
+   while( token != NULL){
+     tokens[i++]=token;
+     token=strtok(NULL," ");
+   }
+   for(int j=0;j<i;j++){
+     if(strstr(str2,tokens[j])==NULL){
+        printf("%s ",tokens[j]);
+     }
+   }
+}
+```
+---
+37. Remove the extra white space in the starting and ending of the string.
+
+```c 
+#include <stdio.h>
+#include<string.h>
+#include <ctype.h>
+
+int main()
+{
+   char str[100];
+   scanf("%[^\n]",str);
+   getchar();
+   int len = strlen(str);
+   int start = 0;
+   int end=len-1;
+   while(str[end]==' '){
+     end--;
+   }
+   while(str[start]==' '){
+     start++;
+   }
+   printf("\n");
+   for(int i=start;i<=end;i++){
+     printf("%c",str[i]);
+   }
+}
+```
+---
+38. Removes the extra space b/w 2 words in a string, like if i/p 
+    hey(3 space)this  is pragal  o/p --> hey this is pragal
+
+```c 
+#include <stdio.h>
+#include<string.h>
+#include <ctype.h>
+
+int main()
+{
+   char str[100];
+   scanf("%[^\n]",str);
+   getchar();
+   int len = strlen(str);
+   for(int i=0;i<len;i++){
+      if(str[i]==' '){
+       if (i + 1 < len && str[i + 1] == ' ')
+        continue;
+      }
+      printf("%c",str[i]);
+   }
+}
+```
+---
+39. Reverse the words in the string
+
+```c 
+#include <stdio.h>
+#include<string.h>
+#include <ctype.h>
+
+int main()
+{
+   char str[100];
+   scanf("%[^\n]",str);
+   getchar();
+   char* token;
+   char* tokens[100];
+   int i=0;
+   int len= strlen(str);
+   token = strtok(str," ");
+   while(token != NULL){
+     tokens[i++]=token;
+     token=strtok(str," ");
+   }
+   for(int j=i-1;j>=0;j--){
+     printf("%s ",tokens[j]);
+   }
+}
+```
+---
+40. Reverse the characters in the words of the string.
+
+```c 
+#include <stdio.h>
+#include<string.h>
+#include <ctype.h>
+
+int main()
+{
+   char str[100];
+   scanf("%[^\n]",str);
+   getchar();
+   int len = strlen(str);
+   int start = 0;
+   for(int i=0;i<=len;i++){
+     if(str[i]==' '){
+       for(int j=i-1;j>=start;j--){
+         printf("%c",str[j]);
+       }
+       if(str[i]==' '){
+         printf(" ");
+       }
+       start = i+1;
+     }
+   }
+ 
+}
+```
+---
+41. Print the first non-repeating character in the string
+
+```c
+#include <stdio.h>
+#include<string.h>
+#include <ctype.h>
+
+int main()
+{
+   char str[100];
+   scanf("%[^\n]",str);
+   int len = strlen(str);
+   getchar();
+   int freq[256]={0};
+   for(int i=0;i<len;i++){
+     char ch = tolower(str[i]);
+     freq[ch-'a']++;
+   }
+   for(int i=0;i<256;i++){
+     if(freq[i]==1){
+       printf("%c",i+'a');
+       break;
+     }
+   }
+}
+```
+---
+42. 
