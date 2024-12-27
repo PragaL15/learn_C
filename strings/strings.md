@@ -1076,4 +1076,63 @@ int main()
 }
 ```
 ---
-42. 
+42. Print the sum of numbers in the string and reverse the sum and print them.
+
+```c
+#include <stdio.h>
+#include<string.h>
+#include <ctype.h>
+
+int main()
+{
+   char str[100];
+   scanf("%[^\n]",str);
+   int len = strlen(str);
+   getchar();
+   int sum=0;
+   int rev=0;
+   for(int i=0;i<len;i++){
+     if(isdigit(str[i])){
+       sum += str[i]-'0';
+     }
+   }
+   printf("%d\n",sum);
+   while(sum!=0){
+     int rem = sum%10;
+     rev = rev*10 + rem;
+     sum/=10;
+   }
+   printf("%d",rev);
+   
+}
+```
+---
+43. Printing the high frequency letters from string.
+
+```c 
+#include<stdio.h>
+#include<string.h>
+#include<ctype.h>
+
+int main(){
+  char str[100];
+  scanf("%[^\n]",str);
+  int len = strlen(str);
+  int freq[256]={0};
+  int max_freq=0;
+  for(int i=0;i<len;i++){
+    int ch = tolower(str[i]);
+    freq[(unsigned char)ch]++;
+    if(max_freq<freq[(unsigned char)ch]){
+      max_freq=freq[(unsigned char)ch];
+    }
+  }
+  for(int i=0;i<256;i++){
+    if(max_freq==freq[i]){
+      printf("%c ",i);
+    }
+  }
+}
+```
+---
+44. 
