@@ -251,5 +251,322 @@ int main(){
 10. Printing the alternate letters in a string in reverse order.
 
 ```c
- 
+#include<stdio.h>
+#include<string.h>
+#include<ctype.h>
+int main(){
+  char str[100];
+  scanf("%[^\n]",str);
+  char* store[100];
+  int len = strlen(str);
+  int j=0;
+  for(int i=1;i<len;i+=2){
+      store[j++]=str[i];
+  }
+  store[j] = '\0'; 
+  for(int i = 0;i<j;i++){
+    printf("%c",store[i]);
+  }
+}
+
 ```
+---
+11. To have the first letter of the element as Capital letter
+
+```c
+#include <string.h>
+#include<stdio.h>
+int main(){
+  char str[100];
+  scanf("%[^\n]",str);
+  int len = strlen(str);
+  for(int i=0;i<len;i++){
+    if(str[i-1]==' ' || str[i-1]=='\0'){
+      str[i] = toupper(str[i]);
+    }
+    printf("%c",str[i]);
+  }
+}
+```
+---
+12. To print only the symbols from the gvn string
+
+```c
+#include <string.h>
+#include<stdio.h>
+#include<ctype.h>
+int main(){
+  char str[100];
+  scanf("%[^\n]",str);
+  int len = strlen(str);
+  for(int i=0;str[i]!='\0';i++){
+   if(!isalnum(str[i]) && !isspace(str[i])){
+     printf("%c",str[i]);
+   }
+  }
+}
+```
+---
+13. To print only the consonants in the given string 
+
+```c
+#include <string.h>
+#include<stdio.h>
+#include<ctype.h>
+int main(){
+  char str[100];
+  scanf("%[^\n]",str);
+  int len = strlen(str);
+  for(int i=0;str[i]!='\0';i++){
+    str[i]=tolower(str[i]);
+    if(str[i]!='a' && str[i]!='e' && str[i]!='i' && str[i]!='o' && str[i]!='u'){
+     printf("%c",str[i]);
+   }
+  }
+}
+```
+---
+14.  Replace specific char with another char and numbers
+with 'n' . 'a' -> 'b'
+,
+'t' -> 'g'
+, number -> 'n' Input:
+"Education4all"
+, Output : "Educbgionnbll"
+
+```c
+#include <string.h>
+#include<stdio.h>
+#include<ctype.h>
+int main(){
+  char str[100];
+  scanf("%[^\n]",str);
+  char ch1='b';
+  char ch2='g';
+  int len = strlen(str);
+  for(int i=0;str[i]!='\0';i++){
+     if(str[i]=='a')
+      str[i]=ch1;
+     if(str[i]=='t')
+     str[i] = ch2;
+     if(isdigit(str[i])){
+       str[i]= 'n';
+     }
+     printf("%c",str[i]);
+  }
+}
+
+```
+---
+15. To print the frequency of each letter present in he string
+
+```c
+#include <string.h>
+#include<stdio.h>
+#include<ctype.h>
+int main(){
+  char str[100];
+  scanf("%[^\n]",str);
+  int len = strlen(str);
+  int freq[256]={0};
+  for(int i=0;str[i]!='\0';i++){
+    freq[(unsigned char)str[i]]++;
+  }
+  
+  for(int i=0;i<256;i++){
+    if(freq[i]!=0)
+    printf("%c , %d\n",i,freq[i]);
+  }
+ 
+}
+```
+---
+16. Replace all the space with special characters
+
+```c
+#include <string.h>
+#include<stdio.h>
+#include<ctype.h>
+int main(){
+  char str[100];
+  scanf("%[^\n]",str);
+  int len = strlen(str);
+  char target = '@';
+  for(int i=0;i<len;i++){
+    if(str[i]==' '){
+      str[i] = target;
+    }
+    printf("%c",str[i]);
+  }
+}
+```
+---
+17. To print the first Uppercase character
+```c
+#include <string.h>
+#include<stdio.h>
+#include<ctype.h>
+int main(){
+  char str[100];
+  scanf("%[^\n]",str);
+  int len = strlen(str);
+  for(int i=0;i<len;i++){
+    if(str[i] > 'A' && str[i]<'Z'){
+       printf("%c",str[i]);
+       break;
+    }
+  }
+}
+```
+---
+18. To print the firat non repeating character in the string
+
+```c
+#include <string.h>
+#include<stdio.h>
+#include<ctype.h>
+int main(){
+  char str[100];
+  scanf("%[^\n]",str);
+  int len = strlen(str);
+  int freq[256]={0};
+  for(int i=0;str[i]!='\0';i++){
+    str[i] = tolower(str[i]);
+    freq[(unsigned char)str[i]]++;
+  }
+  for(int i=0;i<256;i++){
+    if( freq[(unsigned char)str[i]]==1)
+    {
+      printf("%c",str[i]);
+      break;
+    }
+  }
+  }
+```
+---
+19. Remove the duplicate characters and peint he rest of the charecters
+
+```c 
+#include <string.h>
+#include<stdio.h>
+#include<ctype.h>
+int main(){
+  char str[100];
+  scanf("%[^\n]",str);
+  int len = strlen(str);
+  int freq[256]={0};
+  for(int i=0;str[i]!='\0';i++){
+    str[i] = tolower(str[i]);
+    freq[(unsigned char)str[i]]++;
+  }
+  for(int i=0;i<256;i++){
+    if(freq[(unsigned char)str[i]]==1)
+    {
+      printf("%c",str[i]);
+
+    }
+  }
+  }
+```
+---
+20. Print only the repeating charecters in a given string.
+
+```c 
+#include <string.h>
+#include<stdio.h>
+#include<ctype.h>
+int main(){
+  char str[100];
+  scanf("%[^\n]",str);
+  int len = strlen(str);
+  int freq[256]={0};
+  for(int i=0;str[i]!='\0';i++){
+    str[i] = tolower(str[i]);
+    freq[(unsigned char)str[i]]++;
+  }
+  for(int i=0;i<256;i++){
+    if(freq[(unsigned char)str[i]]>1)
+    {
+      printf("%c",str[i]);
+
+    }
+  }
+  }
+```
+---
+21. Check if the particular program is an anagram i.e input --> apple pleap  o/p --> it's anagram
+
+```c 
+#include <string.h>
+#include<stdio.h>
+#include<ctype.h>
+int main(){
+  char str1[100];
+  scanf("%[^\n]",str1);
+  getchar();
+  char str2[100];
+  scanf("%[^\n]",str2);
+  int len1 = strlen(str1);
+  int len2 = strlen(str2);
+  int freq1[256]={0};
+  int freq2[256]={0};
+  for(int i=0;str1[i]!='\0';i++){
+    str1[i] = tolower(str1[i]);
+    freq1[str1[i]-'a']++;
+  }
+  for(int i=0;str2[i]!='\0';i++){
+    str2[i] = tolower(str2[i]);
+    freq2[str2[i]-'a']++;
+  }
+  int anagram=1;
+  for(int i=0;i<26;i++){
+    if(freq1[i]!=freq2[i]){
+      anagram=0;
+      break;
+    }
+  }
+  if(anagram)
+  printf("Anagram");
+  else
+  printf("Not anagram");
+  }
+```
+---
+22. Count the number of charecters in the gvn string and check if it is count prime number or not,
+
+```c 
+#include <string.h>
+#include<stdio.h>
+#include<ctype.h>
+#include<math.h>
+int main(){
+  char str1[100];
+  scanf("%[^\n]",str1);
+  int count =0;
+  int len = strlen(str1);
+  for(int i=0;i<len;i++){
+    if(str1[i]!=' '){
+      count++;
+    }
+  }
+  int is_prime =1;
+  if(count<=1)
+  is_prime=0;
+  if(count ==2 || count == 3){
+    is_prime=1;
+  }
+  if(count%2==0)
+  is_prime=0;
+  else
+  for(int i=3;i<=sqrt(count);i+=2){
+    if(count%i==0)
+    is_prime=0;
+    break;
+  }
+  printf("%d\n",count);
+  if(is_prime)
+  printf("It's prime");
+  }
+```
+---
+23. 
