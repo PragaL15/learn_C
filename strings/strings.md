@@ -570,4 +570,107 @@ int main(){
 ```
 
 ---
-23. 
+23. Printing the first occurance of the charecters
+
+```c 
+#include <stdio.h>
+int main()
+{
+   char str[100];
+   scanf("%[^\n]",str);
+   char ch='a';
+   int len = strlen(str);
+   for(int i=0;i<len;i++){
+     if(str[i]==ch){
+       printf("%d",i);
+       break;
+     }
+   }
+}
+```
+---
+24. Printing the last occurance of the charecters
+
+```c 
+#include <stdio.h>
+int main()
+{
+   char str[100];
+   scanf("%[^\n]",str);
+   char ch='a';
+   int str2[100];
+   int len = strlen(str);
+   for(int i=len-1;i>0;i--){
+     if(str[i]==ch){
+       printf("%d ",i);
+       break;
+     }
+   }
+   }
+   ```
+   ---
+   25. Printing the all occurance of the charecters
+
+   ```c 
+  #include <stdio.h>
+  int main()
+  {
+    char str[100];
+    scanf("%[^\n]",str);
+    char ch='a';
+    int str2[100];
+    int len = strlen(str);
+    for(int i=len-1;i>0;i--){
+      if(str[i]==ch){
+        printf("%d ",i);
+      }
+    }
+    }
+   ```
+   ---
+   26. Count the occurance of a given letter in a string.
+
+   ```c 
+    #include <stdio.h>
+    int main()
+    {
+    char str[100];
+    scanf("%[^\n]",str);
+    char ch='a';
+    int str2[100];
+    int count=0;
+    int len = strlen(str);
+    for(int i=len-1;i>0;i--){
+      if(str[i]==ch){
+        count++;
+      }
+    }
+    printf("%d",count);
+    }
+   ``` 
+   ---
+   27. Find the frequency of each letter in a string
+
+   ```c 
+  #include <stdio.h>
+  #include<string.h>
+
+  int main()
+  {
+    char str[100];
+    scanf("%[^\n]",str);
+    int freq[256]={0};
+    int len = strlen(str);
+    for(int i=0;i<len;i++){
+      str[i] = tolower(str[i]);
+      freq[str[i]-'a']++;
+    }
+    for(int i=0;i<256;i++){
+      if(freq[i]!=0){
+        printf("%c --> %d\n",i+'a',freq[i]);
+      }
+    }
+    }
+   ```
+---
+28. 
