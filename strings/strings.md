@@ -694,11 +694,11 @@ int main()
     int len = strlen(str);
     for(int i=0;i<len;i++){
       str[i] = tolower(str[i]);
-      freq[str[i]-'a']++;
+      freq[(unsigned char)str[i]]++;
     }
     for(int i=0;i<256;i++){
       if(freq[i]!=0){
-        printf("%c --> %d\n",i+'a',freq[i]);
+        printf("%c --> %d\n",i,freq[i]);
       }
     }
     }
