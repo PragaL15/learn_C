@@ -36,6 +36,31 @@ int main() {
     return 0;
 }
 ```
+**(or)**
+```c
+#include <stdio.h>
+#include <string.h>
+#include <stdbool.h>
+
+int main() {
+    char s1[100], s2[100];
+    scanf("%[^\n]", s1);
+    getchar();
+    scanf("%[^\n]", s2);
+    if (strlen(s1) != strlen(s2)) {
+        printf("The strings are not isometric.\n");
+        return 0;
+    }
+    for (int i = 0; s1[i]; ++i) {
+        if (strchr(s1, s1[i]) - s1 != strchr(s2, s2[i]) - s2) {
+            printf("The strings are not isometric.\n");
+            return 0;
+        }
+    }
+    printf("The strings are isometric.\n");
+    return 0;
+}
+```
 
 ---
 
@@ -425,7 +450,7 @@ int main(){
 }
 ```
 ---
-18. To print the firat non repeating character in the string
+18. To print the first non repeating character in the string
 
 ```c
 #include <string.h>
@@ -450,7 +475,7 @@ int main(){
   }
 ```
 ---
-19. Remove the duplicate characters and peint he rest of the charecters
+19. Remove the duplicate characters and print he rest of the charecters
 
 ```c 
 #include <string.h>
@@ -1157,7 +1182,7 @@ int main(){
 }
 ```
 ---
-44. 2nd maximum largest word in the string 
+44. **a** 2nd maximum largest word in the string  
 
 ```c
 #include<stdio.h>
@@ -1195,7 +1220,50 @@ int main(){
   }
   printf("%s",sec_max); 
 }
+
 ```
+ **b** What is the 2nd smallest word in the given string?
+```c
+#include <stdio.h>
+#include<string.h>
+#include <ctype.h>
+#include <limits.h>
+int main()
+{
+   char str[100];
+   scanf("%[^\n]",str);
+   getchar();
+   char* token;
+   char* tokens[100];
+   int len = strlen(str);
+   token = strtok(str," ");
+   int i=0;
+   while(token != NULL){
+     tokens[i++]= token;
+     token = strtok(NULL," ");
+   }
+   int min=INT_MAX;
+   int sec_min = INT_MAX;
+   char* min_word = NULL;
+   char* sec_min_word = NULL;
+   
+   for(int j=0;j<i;j++){
+     int count = strlen(tokens[j]);
+     if(count<min){
+       sec_min = min;
+       sec_min_word = min_word;
+       min=count;
+       min_word=tokens[j];
+     }
+     if(count>min && count<sec_min){
+       sec_min_word=tokens[j];
+       sec_min=count;
+     }
+   }
+ printf("%s",sec_min_word);
+}
+```
+
 ---
 45. A B C E F G F T N is input and 
     output is 
@@ -1223,4 +1291,100 @@ int main(){
 }
 ```
 ---
-46. 
+46. To rotate the string and need to get the number of rotations from user.
+
+```c
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+int main() {
+    char str[100];
+    scanf("%[^\n]", str);
+    getchar(); 
+    int n;
+    scanf("%d", &n); 
+    int len = strlen(str);
+    if( len==0 || n%len==0)
+    {
+      printf("%s",str);
+      return 0;
+    }
+    n=n%len;
+    char temp[100];
+    strncpy(temp,str+n,len-n);
+    strncpy(temp + (len-n),str,n);
+    temp[len]='\0';
+    printf("%s",temp);
+}
+
+```
+---
+47. Remove the first occurance of a word from the string 
+
+```c
+#include <stdio.h>
+#include<string.h>
+
+int main()
+{
+   char str[100];
+   scanf("%[^\n]",str);
+   char str2[100];
+   getchar();
+   int first = 0;
+   scanf("%[^\n]",str2);
+   char* token;
+   char* tokens[100];
+   int len = strlen(str);
+   int i=0;
+   token = strtok(str," ");
+   while(token != NULL){
+     tokens[i++]=token;
+     token=strtok(NULL," ");
+   }
+   for(int j=0;j<i;j++){
+     if(strcmp(str2,tokens[j])==0){
+       if (first == 0) {
+                first = j; 
+            }
+     }
+   }
+   for(int j=0;j<i;j++)
+   if(j!=first)
+   printf("%s ",tokens[j]);
+}
+```
+48. Remove the first occurance of a word from the string .
+
+```c
+#include <stdio.h>
+#include<string.h>
+
+int main()
+{
+   char str[100];
+   scanf("%[^\n]",str);
+   char str2[100];
+   getchar();
+   int last = 0;
+   scanf("%[^\n]",str2);
+   char* token;
+   char* tokens[100];
+   int len = strlen(str);
+   int i=0;
+   token = strtok(str," ");
+   while(token != NULL){
+     tokens[i++]=token;
+     token=strtok(NULL," ");
+   }
+   for(int j=0;j<i;j++){
+     if(strcmp(str2,tokens[j])==0){
+      last=j;
+     }
+   }
+   for(int j=0;j<i;j++)
+   if(j!=last)
+   printf("%s ",tokens[j]);
+}
+```
