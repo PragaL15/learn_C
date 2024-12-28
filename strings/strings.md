@@ -1071,28 +1071,26 @@ int main()
 
 ```c 
 #include <stdio.h>
-#include<string.h>
+#include <string.h>
+#include <stdbool.h>
 #include <ctype.h>
 
-int main()
-{
-   char str[100];
-   scanf("%[^\n]",str);
-   getchar();
-   int len = strlen(str);
-   int start = 0;
-   for(int i=0;i<=len;i++){
-     if(str[i]==' '){
-       for(int j=i-1;j>=start;j--){
-         printf("%c",str[j]);
-       }
-       if(str[i]==' '){
-         printf(" ");
-       }
-       start = i+1;
-     }
-   }
- 
+int main(){
+  char str[100];
+  scanf("%[^\n]",str);
+  int len = strlen(str);
+  int start =0;
+  for(int i=0;i<=len;i++){
+    if (str[i] == ' ' || str[i] == '\0'){
+      for(int j=i-1;j>=start;j--){
+        printf("%c",str[j]);
+      }
+      if(str[i]==' '){
+        printf(" ");
+      }
+      start=i+1;
+    }
+  }
 }
 ```
 ---
