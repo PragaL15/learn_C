@@ -1110,11 +1110,11 @@ int main()
    int freq[256]={0};
    for(int i=0;i<len;i++){
      char ch = tolower(str[i]);
-     freq[ch-'a']++;
+     freq[(unsigned char)ch]++;
    }
    for(int i=0;i<256;i++){
      if(freq[i]==1){
-       printf("%c",i+'a');
+       printf("%c",i);
        break;
      }
    }
