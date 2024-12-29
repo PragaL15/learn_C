@@ -1152,6 +1152,7 @@ int main()
 }
 ```
 ---
+
 43. Printing the high frequency letters from string.
 
 ```c 
@@ -1318,7 +1319,7 @@ int main() {
 
 ```
 ---
-47. Remove the first occurance of a word from the string 
+47. Remove the first occurance of a word from the string.
 
 ```c
 #include <stdio.h>
