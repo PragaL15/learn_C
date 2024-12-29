@@ -1353,6 +1353,7 @@ int main()
    if(j!=first)
    printf("%s ",tokens[j]);
 }
+
 ```
 48. Remove the first occurance of a word from the string .
 
