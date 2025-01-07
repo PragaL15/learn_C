@@ -1687,4 +1687,67 @@ int main() {
     return 0;
 }
 ```
+---
+59. Left rotation in the string.
 
+```c
+#include <stdio.h>
+#include <string.h>
+void leftRotateString(char *str, int n) {
+    int len = strlen(str);
+    if (n <= 0 || len == 0) {
+        return; 
+    }
+    n = n % len; 
+    char temp[n];
+    for (int i = 0; i < n; i++) {
+        temp[i] = str[i];
+    }for (int i = n; i < len; i++) {
+        str[i - n] = str[i];
+    }
+    for (int i = 0; i < n; i++) {
+        str[len - n + i] = temp[i];
+    }
+}
+int main() {
+    char str[100];
+    int n;
+    scanf("%s", str);
+   scanf("%d", &n);
+    leftRotateString(str, n);
+    printf("String after %d left rotations: %s\n", n, str);
+    return 0;
+}
+```
+---
+60. Right rotation in the string.
+```c
+#include <stdio.h>
+#include <string.h>
+
+void rightRotate(char str[], int k) {
+    int n = strlen(str);
+    k = k % n;
+    char temp[n + 1];
+    for (int i = 0; i < k; i++) {
+        temp[i] = str[n - k + i];
+    }
+    for (int i = 0; i < n - k; i++) {
+        temp[k + i] = str[i];
+    }
+    temp[n] = '\0';
+    strcpy(str, temp);
+}
+int main() {
+    char str[100];
+    int k;
+    fgets(str, sizeof(str), stdin);
+    str[strcspn(str, "\n")] = '\0'; 
+    scanf("%d", &k);
+    rightRotate(str, k);
+    printf("Rotated string: %s\n", str);
+    return 0;
+}
+```
+---
+61. 
