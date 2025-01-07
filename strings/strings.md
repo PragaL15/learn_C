@@ -1648,4 +1648,43 @@ int main(){
 }
 ```
 ---
+58. Remove leading zeros and check if the strings are equal,lesser or greater.
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char s1[100];
+    fgets(s1, 100, stdin);
+    s1[strcspn(s1, "\n")] = '\0';
+
+    char s2[100];
+    fgets(s2, 100, stdin);
+    s2[strcspn(s2, "\n")] = '\0'; 
+    int i = 0, j = 0, n1 = strlen(s1), n2 = strlen(s2);
+    printf("%s and %s are ", s1, s2);
+    while (s1[i] != '\0') {
+        i++;
+    }
+    if (i > 0) {
+        strcpy(s1, &s1[1]);
+    }
+    while (s2[j] != '\0') {
+        j++;
+    }
+    if (j > 0) {
+        strcpy(s2, &s2[1]);
+    }
+    int res = strcmp(s1, s2);
+    if (res == 0)
+        printf("equal");
+    else if (res > 0)
+        printf("greater");
+    else if (res < 0)
+        printf("lesser");
+
+    return 0;
+}
+```
 
