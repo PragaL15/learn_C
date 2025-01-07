@@ -200,6 +200,7 @@ int main(){
   int freq[256]={0};
   int len = strlen(str);
   for(int i=0;i<len;i++){
+    if(freq[i]!=' ')
     freq[(int)str[i]]++;
   }
   int maxFreq=0;
@@ -210,7 +211,8 @@ int main(){
 for(int i=0;i<256;i++){
   if(freq[i]==maxFreq){
     for(int j=0;j<maxFreq;j++){
-         printf("%c ",i);
+         printf("%c",i);
+         break;
     }
   }
 }
