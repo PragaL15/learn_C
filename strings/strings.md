@@ -1388,3 +1388,66 @@ int main()
    printf("%s ",tokens[j]);
 }
 ```
+---
+49. Odd-indexed strings in reverse order
+
+```c
+#include <stdio.h>
+#include <string.h>
+void reverseString(char str[]) {
+    int len = strlen(str);
+    for (int i = len - 1; i >= 0; i--) {
+        printf("%c", str[i]);
+    }
+}
+int main() {
+    int n;
+    scanf("%d", &n);
+    char strings[n][100];
+    for (int i = 0; i < n; i++) {
+        scanf("%s", strings[i]);
+    }
+    printf("Odd-indexed strings in reverse order:\n");
+    for (int i = 0; i < n; i++) {
+        if ((i + 1) % 2 != 0) { 
+            reverseString(strings[i]);
+            printf("\n");
+        }
+    }
+    return 0;
+}
+```
+---
+50. Input from the user for an array of words and calculates the second-largest string length.
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    int n;
+    scanf("%d", &n);
+    char words[n][100]; 
+    int lengths[n]; 
+    int i, max = 0, second_max = 0;
+    for (i = 0; i < n; i++) {
+        scanf("%s", words[i]); 
+        lengths[i] = strlen(words[i]); 
+    }
+    for (i = 0; i < n; i++) {
+        if (lengths[i] > max) {
+            second_max = max;
+            max = lengths[i];
+        } else if (lengths[i] > second_max && lengths[i] != max) {
+            second_max = lengths[i];
+        }
+    }
+    if (second_max == 0) {
+        printf("0");
+    } else {
+        printf("The second largest string length is: %d\n", second_max);
+    }
+    return 0;
+}
+```
+---
