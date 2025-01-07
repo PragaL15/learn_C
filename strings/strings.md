@@ -1622,4 +1622,30 @@ o/p ->
 Longest Common Prefix: fl
 ```
 ---
-57. 
+57. Check if the given is Pangram or not.(Means the charecter from a-z must be used atleast once in the given string).
+
+```c
+#include <string.h>
+#include<stdio.h>
+#include<ctype.h>
+
+int main(){
+  char str[100];
+  scanf("%[^\n]",str);
+  int freq[26]={0};
+  for(int i=0;str[i]!='\0';i++){
+    str[i]=tolower(str[i]);
+    freq[str[i]-'a']++;
+  }
+  for(int i=0;i<26;i++){
+    if(freq[i]==0)
+    {
+      printf("Not pangram");
+      return 0;
+    }
+  }
+  printf("It's Pangram");
+}
+```
+---
+
