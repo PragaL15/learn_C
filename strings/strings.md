@@ -158,30 +158,34 @@ int main(){
 
 ```c
 #include <stdio.h>
-#include <string.h>
-int main(){
-  char str[100];
-  scanf("%[^\n]",str);
-  getchar();
-  int target;
-  int hour = atoi(strtok(str,":"));
-  int min = atoi(strtok(NULL,":"));
-  int sec = atoi(strtok(NULL,":"));
-  if(hour<0 || hour>23 || min<0||min>59||sec<0||sec>59)
-  printf("Invalid time format");
-  char period[3];
-  int disp_hr = hour%12;
-  if(disp_hr==0){
-    disp_hr=12;
-  }
-  if(hour<12){
-    strcpy(period,"AM");
-  }
-  else
-  {
-    strcpy(period,"PM");
-  }
-  printf("Hour:%d min:%d sec:%d %s",disp_hr,min,sec,period);
+#include <stdlib.h>
+int isValidTime(int hours, int minutes, int seconds) {
+    if (hours < 0 || hours > 23) {
+        return 0;  
+    }
+    if (minutes < 0 || minutes > 59) {
+        return 0; 
+    }
+    if (seconds < 0 || seconds > 59) {
+        return 0;  
+    }
+    return 1; 
+}
+int main() {
+    char time[9];
+    int hours, minutes, seconds;
+    scanf("%s", time);
+    if (sscanf(time, "%d:%d:%d", &hours, &minutes, &seconds) != 3) {
+        printf("Invalid time format\n");
+        return 1;  
+    }
+    if (isValidTime(hours, minutes, seconds)) {
+        printf("Hour:%02d Minutes:%d Seconds:%d\n", hours, minutes, seconds);
+    } else {
+        printf("Invalid time\n");
+    }
+
+    return 0;
 }
 ```
 ---
@@ -1438,7 +1442,8 @@ int main() {
         if (lengths[i] > max) {
             second_max = max;
             max = lengths[i];
-        } else if (lengths[i] > second_max && lengths[i] != max) {
+        } 
+        else if (lengths[i] > second_max && lengths[i] != max) {
             second_max = lengths[i];
         }
     }
@@ -1451,3 +1456,170 @@ int main() {
 }
 ```
 ---
+51. Print the largest palindrome found in the substring.
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+void longestPalSubstr(const char* s, char* result) {
+    int n = strlen(s), start = 0, maxLen = 1;
+    for (int i = 0; i < n; i++) {
+        for (int j = i; j < n; j++) {
+            int len = j - i + 1, k;
+            for (k = 0; k < len / 2; k++) 
+                if (s[i + k] != s[j - k]) break;
+            if (k == len / 2 && len > maxLen) {
+                start = i;
+                maxLen = len;
+            }
+        }
+    }
+    strncpy(result, s + start, maxLen);
+    result[maxLen] = '\0';
+}
+int main() {
+    char s[100]; 
+    char result[100]; 
+    scanf("%[^\n]", s); 
+    longestPalSubstr(s, result);
+    printf("The longest palindromic substring is: %s\n", result);
+    return 0;
+}
+```
+---
+52. To get the input in array form and then find the maximum length and print.
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    int n;
+    scanf("%d", &n);
+
+    char strings[n][100]; 
+    int maxLength = 0;
+    int index = 0;
+    for (int i = 0; i < n; i++) {
+        scanf("%s", strings[i]); 
+        int length = strlen(strings[i]);
+        if (length > maxLength) {
+            maxLength = length;
+            index = i;
+        }
+    }
+    printf("The longest string is: %s\n", strings[index]);
+    printf("Its length is: %d\n", maxLength);
+    return 0;
+}
+```
+---
+53. Rotate the 2-D matrix into 90 degree.
+
+```c
+#include <stdio.h>
+void rotateMatrix(int n, int matrix[n][n]) {
+    int rotated[n][n];
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            rotated[j][n - 1 - i] = matrix[i][j];
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            matrix[i][j] = rotated[i][j];
+        }
+    }
+}
+int main() {
+    int n;
+    scanf("%d", &n);
+    int matrix[n][n];
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf("%d", &matrix[i][j]);
+        }
+    }
+    rotateMatrix(n, matrix);
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            printf("%d ", matrix[i][j]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
+```
+---
+55.  Calculates and prints the average of an array.
+```c
+#include <stdio.h>
+
+int main() {
+    int n;
+    float sum = 0.0, average;
+    scanf("%d", &n);
+
+    int arr[n];
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+        sum += arr[i];  
+    }
+    average = sum / n;
+    printf("The average is: %.2f\n", average);
+
+    return 0;
+}
+```
+---
+56. To find the longest common prefix (LCP) of a list of strings in C, you can compare characters across all strings one by one until you find a mismatch.
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+char* longestCommonPrefix(char strs[][100], int n) {
+    if (n == 0) return "";  
+    static char prefix[100];
+    int i = 0;
+    
+    for (int j = 0; strs[0][j] != '\0'; j++) {
+         for (i = 1; i < n; i++) {
+            if (strs[i][j] != strs[0][j]) {
+                prefix[j] = '\0';
+                return prefix;
+            }
+        }
+        prefix[j] = strs[0][j];
+    }
+    prefix[i] = '\0';
+    return prefix;
+}
+int main() {
+    int n;
+    scanf("%d", &n);
+    char strs[n][100];  
+    for (int i = 0; i < n; i++) {
+        scanf("%s", strs[i]);
+    }
+    char* result = longestCommonPrefix(strs, n);
+    printf("Longest Common Prefix: %s\n", result);
+    return 0;
+}
+```
+i/p -> 
+```
+4
+flower
+flow
+flight
+flame
+```
+o/p ->
+```
+Longest Common Prefix: fl
+```
+---
+57. 
