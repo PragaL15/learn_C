@@ -537,39 +537,41 @@ int main(){
 21. Check if the particular program is an anagram i.e input --> apple pleap  o/p --> it's anagram
 
 ```c 
+#include <stdio.h>
 #include <string.h>
-#include<stdio.h>
-#include<ctype.h>
-int main(){
-  char str1[100];
-  scanf("%[^\n]",str1);
-  getchar();
-  char str2[100];
-  scanf("%[^\n]",str2);
-  int len1 = strlen(str1);
-  int len2 = strlen(str2);
-  int freq1[256]={0};
-  int freq2[256]={0};
-  for(int i=0;str1[i]!='\0';i++){
-    str1[i] = tolower(str1[i]);
-    freq1[str1[i]-'a']++;
-  }
-  for(int i=0;str2[i]!='\0';i++){
-    str2[i] = tolower(str2[i]);
-    freq2[str2[i]-'a']++;
-  }
-  int anagram=1;
-  for(int i=0;i<26;i++){
-    if(freq1[i]!=freq2[i]){
-      anagram=0;
-      break;
+#include <ctype.h>
+
+int main() {
+    char str[100], str2[100];
+    scanf("%[^\n]", str);
+    getchar();  
+    scanf("%[^\n]", str2);
+    int freq[256] = {0};
+    int freq2[256] = {0};
+
+     for (int i = 0; str[i] != '\0'; i++) {
+        if (isalpha(str[i])) {
+            freq[tolower(str[i])]++;
+        }
     }
-  }
-  if(anagram)
-  printf("Anagram");
-  else
-  printf("Not anagram");
-  }
+    for (int i = 0; str2[i] != '\0'; i++) {
+        if (isalpha(str2[i])) {
+            freq2[tolower(str2[i])]++;
+        }
+    }
+    int anagram = 1;
+    for (int i = 0; i < 256; i++) {
+        if (freq[i] != freq2[i]) {
+            anagram = 0;
+            break;
+        }
+    }
+    if (anagram)
+        printf("It's an anagram\n");
+    else
+        printf("Not an anagram\n");
+    return 0;
+}
 ```
 ---
 22. Count the number of charecters in the gvn string and check if it is count prime number or not,
