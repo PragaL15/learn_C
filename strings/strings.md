@@ -1403,7 +1403,7 @@ int main()
 }
 ```
 ---
-49. Odd-indexed strings in reverse order
+49. Odd-indexed strings in reverse order.
 
 ```c
 #include <stdio.h>
@@ -1415,16 +1415,14 @@ void reverseString(char str[]) {
     }
 }
 int main() {
-    int n;
-    scanf("%d", &n);
-    char strings[n][100];
-    for (int i = 0; i < n; i++) {
-        scanf("%s", strings[i]);
+    char strings[100][100];
+    int i = 0;
+    while (scanf("%s", strings[i]) != EOF) {
+        i++;
     }
-    printf("Odd-indexed strings in reverse order:\n");
-    for (int i = 0; i < n; i++) {
-        if ((i + 1) % 2 != 0) { 
-            reverseString(strings[i]);
+    for (int j = 0; j < i; j++) {
+        if ((j + 0) % 2 != 0) { 
+            reverseString(strings[j]);
             printf("\n");
         }
     }
@@ -1797,4 +1795,33 @@ int main() {
 }
 ```
 ---
-62. 
+62. Even-indexed strings in reverse order.
+    
+```c
+#include <stdio.h>
+#include <string.h>
+
+void reverseString(char str[]) {
+    int len = strlen(str);
+    for (int i = len - 1; i >= 0; i--) {
+        printf("%c", str[i]);
+    }
+}
+int main() {
+    char strings[100][100];
+    int i = 0;
+
+    while (scanf("%s", strings[i]) != EOF) {
+        i++;
+    }
+    for (int j = 0; j < i; j++) {
+        if ((j + 1) % 2 != 0) { 
+            reverseString(strings[j]);
+            printf("\n");
+        }
+    }
+    return 0;
+}
+```
+---
+
