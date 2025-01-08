@@ -398,23 +398,26 @@ int main(){
 15. To print the frequency of each letter present in he string
 
 ```c
-#include <string.h>
-#include<stdio.h>
-#include<ctype.h>
-int main(){
-  char str[100];
-  scanf("%[^\n]",str);
-  int len = strlen(str);
-  int freq[256]={0};
-  for(int i=0;str[i]!='\0';i++){
-    freq[(unsigned char)str[i]]++;
-  }
-  
-  for(int i=0;i<256;i++){
-    if(freq[i]!=0)
-    printf("%c , %d\n",i,freq[i]);
-  }
- 
+#include <stdio.h>
+#include<string.h>
+#include <ctype.h>
+
+int main()
+{
+   char str[100];
+   scanf("%[^\n]",str);
+   int len = strlen(str);
+   getchar();
+   int freq[256] = {0};
+   for(int i=0;i<len;i++){
+     freq[(int)str[i]]++;
+   }
+   for(int i=0;i<len;i++){
+     if(freq[(int)str[i]]!=0){
+       printf("%d --> %c\n",freq[str[i]],str[i]);
+       freq[(int)str[i]] = 0;
+     }
+   }
 }
 ```
 ---
