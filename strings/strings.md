@@ -1727,27 +1727,30 @@ int main() {
 #include <stdio.h>
 #include <string.h>
 
-void rightRotate(char str[], int k) {
-    int n = strlen(str);
-    k = k % n;
-    char temp[n + 1];
-    for (int i = 0; i < k; i++) {
-        temp[i] = str[n - k + i];
+void rightRotateString(char *str, int n) {
+    int len = strlen(str);
+    if (n <= 0 || len == 0) {
+        return; 
     }
-    for (int i = 0; i < n - k; i++) {
-        temp[k + i] = str[i];
+    n = n % len; 
+    char temp[n];
+    for (int i = 0; i < n; i++) {
+        temp[i] = str[len - n + i];
     }
-    temp[n] = '\0';
-    strcpy(str, temp);
+    for (int i = len - 1; i >= n; i--) {
+        str[i] = str[i - n];
+    }
+    for (int i = 0; i < n; i++) {
+        str[i] = temp[i];
+    }
 }
 int main() {
     char str[100];
-    int k;
-    fgets(str, sizeof(str), stdin);
-    str[strcspn(str, "\n")] = '\0'; 
-    scanf("%d", &k);
-    rightRotate(str, k);
-    printf("Rotated string: %s\n", str);
+    int n;
+    scanf("%s", str);
+    scanf("%d", &n);
+    rightRotateString(str, n);
+    printf("Right rotations: %s\n", str);
     return 0;
 }
 ```
