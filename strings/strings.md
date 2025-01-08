@@ -1316,19 +1316,21 @@ int main() {
     int n;
     scanf("%d", &n); 
     int len = strlen(str);
-    if( len==0 || n%len==0)
-    {
-      printf("%s",str);
-      return 0;
+     if (len == 0 || n % len == 0) {
+        printf("%s", str);
+        return 0;
     }
-    n=n%len;
+     n = n % len;
+     if (n < 0) {
+        n += len; 
+    }
     char temp[100];
-    strncpy(temp,str+n,len-n);
-    strncpy(temp + (len-n),str,n);
-    temp[len]='\0';
-    printf("%s",temp);
+    strncpy(temp, str + n, len - n);       
+    strncpy(temp + (len - n), str, n);     
+    temp[len] = '\0';                     
+    printf("%s", temp);
+    return 0;
 }
-
 ```
 ---
 47. Remove the first occurance of a word from the string.
