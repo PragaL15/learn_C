@@ -577,38 +577,39 @@ int main() {
 22. Count the number of charecters in the gvn string and check if it is count prime number or not,
 
 ```c 
+#include <stdio.h>
 #include <string.h>
-#include<stdio.h>
-#include<ctype.h>
-#include<math.h>
-int main(){
-  char str1[100];
-  scanf("%[^\n]",str1);
-  int count =0;
-  int len = strlen(str1);
-  for(int i=0;i<len;i++){
-    if(str1[i]!=' '){
-      count++;
+#include <ctype.h>
+#include <math.h>
+
+int main() {
+    char str1[100];
+    scanf("%[^\n]", str1);
+    int count = 0;
+    for (int i = 0; str1[i] != '\0'; i++) {
+        if (str1[i] != ' ') {
+            count++;
+        }
     }
-  }
-  int is_prime =1;
-  if(count<=1)
-  is_prime=0;
-  if(count ==2 || count == 3){
-    is_prime=1;
-  }
-  if(count%2==0)
-  is_prime=0;
-  else
-  for(int i=3;i<=sqrt(count);i+=2){
-    if(count%i==0)
-    is_prime=0;
-    break;
-  }
-  printf("%d\n",count);
-  if(is_prime)
-  printf("It's prime");
-  }
+    int is_prime = 1;
+    if (count <= 1 ) {
+        is_prime = 0; 
+    } else {
+        for (int i = 2; i <= sqrt(count); i++) {
+            if (count % i == 0) {
+                is_prime = 0;
+                break;
+            }
+        }
+    }
+    printf("%d\n", count);
+    if (is_prime) {
+        printf("It's prime\n");
+    } else {
+        printf("Not prime\n");
+    }
+    return 0;
+}
 ```
 
 ---
