@@ -1723,6 +1723,7 @@ int main() {
 ```
 ---
 60. Right rotation in the string.
+    
 ```c
 #include <stdio.h>
 #include <string.h>
