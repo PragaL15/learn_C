@@ -1766,26 +1766,18 @@ int main() {
 ```c
 #include <stdio.h>
 #include <string.h>
-#include <ctype.h>
+
 int isValidTime(const char *time) {
-     if (strlen(time) != 5) {
-        return 0;
-    }
-         if (!isdigit(time[0]) || !isdigit(time[1]) || time[2] != ':' ||
-        !isdigit(time[3]) || !isdigit(time[4])) {
-        return 0;
-    }
-    int hours = (time[0] - '0') * 10 + (time[1] - '0');
-    int minutes = (time[3] - '0') * 10 + (time[4] - '0');
-    if (hours < 0 || hours > 23 || minutes < 0 || minutes > 59) {
-        return 0;
-    }
-    return 1;
+    if (strlen(time) != 5 || time[2] != ':') return 0;
+    int hours, minutes;
+    if (sscanf(time, "%2d:%2d", &hours, &minutes) != 2) return 0;
+    return hours >= 0 && hours <= 23 && minutes >= 0 && minutes <= 59;
 }
 int main() {
     char time[10];
     printf("Enter a time in HH:MM format: ");
     scanf("%s", time);
+
     if (isValidTime(time)) {
         printf("The time \"%s\" is valid.\n", time);
     } else {
@@ -1793,6 +1785,7 @@ int main() {
     }
     return 0;
 }
+```
 ```
 ---
 62. Even-indexed strings in reverse order.
